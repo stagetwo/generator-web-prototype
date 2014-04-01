@@ -1,7 +1,7 @@
 // Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   // load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
@@ -16,11 +16,15 @@ module.exports = function (grunt) {
     watch: {
       stencil: {
         files: [
-          '<%= yeoman.app %>/pages/{,*/}*.dot.html',
-          '<%= yeoman.app %>/layouts/{,*/}*.dot.html',
-          '<%= yeoman.app %>/partials/{,*/}*.dot.html'
+          '<%%= config.app %>/pages/{,*/}*.dot.html',
+          '<%%= config.app %>/layouts/{,*/}*.dot.html',
+          '<%%= config.app %>/partials/{,*/}*.dot.html'
         ],
         tasks: ['stencil']
+      },
+      less: {
+        files: ['<%%= config.app %>/assets/less/{,*/}*.less'],
+        tasks: ['less']
       },
       bower: {
         files: ['bower.json'],
@@ -35,9 +39,10 @@ module.exports = function (grunt) {
         },
         files: [
           '<%%= config.app %>/index.html',
-          '<%%= config.app %>/layouts/*.html',
-          '<%%= config.app %>/partials/*.html',
-          '<%%= config.app %>/pages/*.html'
+          '<%%= config.app %>/prototypes/*.html',
+          '<%%= config.app %>/assets/css/*.css',
+          '<%%= config.app %>/assets/images/*',
+          '<%%= config.app %>/assets/js/*.js'
         ]
       }
     },
@@ -64,14 +69,19 @@ module.exports = function (grunt) {
         exclude: ['<%%= config.app %>/bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
+    less: {
+      dist: {
+        files: {
+          '<%%= config.app %>/assets/css/app.css': ['<%%= config.app %>/assets/less/app.less'],
+          '<%%= config.app %>/assets/css/prototypes.css': ['<%%= config.app %>/assets/less/prototypes.less']
+        }
+      }
+    },
     stencil: {
       main: {
         options: {
-          env: {
-            title: "Stencil",
-          },
-          partials: '<%%= config.app %>/partials',
-          templates: '<%%= config.app %>/layouts',
+          partials: '<%%= config.app %>/templates/partials',
+          templates: '<%%= config.app %>/templates/layouts',
           dot_template_settings: { 
             strip: false,
           },
@@ -79,9 +89,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: "<%%= config.app %>/pages",
+            cwd: "<%%= config.app %>/templates/pages",
             src: "**/*.dot.html",
-            dest: "<%%= config.app %>/src",
+            dest: "<%%= config.app %>/prototypes",
             ext: ".html"
           }
         ]
@@ -97,6 +107,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'less',
     'stencil'
   ]);
 };

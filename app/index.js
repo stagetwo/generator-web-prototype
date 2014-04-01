@@ -26,28 +26,41 @@ var WebPrototypeGenerator = yeoman.generators.Base.extend({
     this.log(chalk.magenta('You\'re using the fantastic web prototype generator.'));
 
     var prompts = [{
-      name: 'prototypeName',
-      message: 'What would you like to call your prototype?'
+      name: 'projectName',
+      message: 'What is the name of your project?'
     }];
 
     this.prompt(prompts, function (props) {
-      this.prototypeName = props.prototypeName;
+      this.projectName = props.projectName;
 
       done();
     }.bind(this));
   },
 
   app: function() {
+    // create directories
     this.mkdir('app');
-    this.mkdir('app/layouts');
-    this.mkdir('app/partials');
-    this.mkdir('app/pages');
-    this.mkdir('app/src');
+
+    this.mkdir('app/assets');
+    this.mkdir('app/assets/less');
+    this.mkdir('app/assets/css');
+    this.mkdir('app/assets/images');
+    this.mkdir('app/assets/js');
+
+    this.mkdir('app/templates');
+    this.mkdir('app/templates/layouts');
+    this.mkdir('app/templates/partials');
+    this.mkdir('app/templates/pages');
+    this.mkdir('app/prototypes');
+
+    // copy files
+    this.copy('app.less', 'app/assets/less/app.less');
+    this.copy('prototypes.less', 'app/assets/less/prototypes.less');
 
     this.template('index.html', 'app/index.html');
-    this.template('main.dot.html', 'app/layouts/main.dot.html');
-    this.template('breadcrumb.dot.html', 'app/partials/breadcrumb.dot.html');
-    this.template('home.dot.html', 'app/pages/home.dot.html');
+    this.template('main.dot.html', 'app/templates/layouts/main.dot.html');
+    this.template('breadcrumb.dot.html', 'app/templates/partials/breadcrumb.dot.html');
+    this.template('home.dot.html', 'app/templates/pages/home.dot.html');
   },
 
   packages: function() {
