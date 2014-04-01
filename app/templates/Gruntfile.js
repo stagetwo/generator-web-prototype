@@ -5,11 +5,23 @@ module.exports = function (grunt) {
   // load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
+  // load npm tasks
+  grunt.loadNpmTasks('grunt-stencil');
+
+  // configure grunt
   grunt.initConfig({
     config: {
       app: 'app'
     },
     watch: {
+      stencil: {
+        files: [
+          '<%= yeoman.app %>/pages/{,*/}*.dot.html',
+          '<%= yeoman.app %>/layouts/{,*/}*.dot.html',
+          '<%= yeoman.app %>/partials/{,*/}*.dot.html'
+        ],
+        tasks: ['stencil']
+      },
       bower: {
         files: ['bower.json'],
         tasks: ['bowerInstall']
@@ -52,8 +64,39 @@ module.exports = function (grunt) {
         exclude: ['<%%= config.app %>/bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
+    stencil: {
+      main: {
+        options: {
+          env: {
+            title: "Stencil",
+          },
+          partials: '<%%= config.app %>/partials',
+          templates: '<%%= config.app %>/layouts',
+          dot_template_settings: { 
+            strip: false,
+          },
+        },
+        files: [
+          {
+            expand: true,
+            cwd: "<%%= config.app %>/pages",
+            src: "**/*.dot.html",
+            dest: "<%%= config.app %>/src",
+            ext: ".html"
+          }
+        ]
+      },
+    }
   });
 
-  // define Tasks
-  grunt.registerTask('serve', ['connect:livereload', 'watch']);
+  // define tasks
+  grunt.registerTask('serve', [
+    'build',
+    'connect:livereload',
+    'watch'
+  ]);
+
+  grunt.registerTask('build', [
+    'stencil'
+  ]);
 };

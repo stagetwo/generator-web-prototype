@@ -1,22 +1,22 @@
 'use strict';
+
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
-
 var WebPrototypeGenerator = yeoman.generators.Base.extend({
-  init: function () {
+  init: function() {
     this.pkg = require('../package.json');
 
-    this.on('end', function () {
+    this.on('end', function() {
       if (!this.options['skip-install']) {
         this.installDependencies();
       }
     });
   },
 
-  askFor: function () {
+  askFor: function() {
     var done = this.async();
 
     // have Yeoman greet the user
@@ -37,26 +37,33 @@ var WebPrototypeGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  app: function () {
+  app: function() {
     this.mkdir('app');
     this.mkdir('app/layouts');
-    this.mkdir('app/pages');
     this.mkdir('app/partials');
+    this.mkdir('app/pages');
+    this.mkdir('app/src');
 
     this.template('index.html', 'app/index.html');
+    this.template('main.dot.html', 'app/layouts/main.dot.html');
     this.template('breadcrumb.dot.html', 'app/partials/breadcrumb.dot.html');
     this.template('home.dot.html', 'app/pages/home.dot.html');
-    this.template('main.dot.html', 'app/layouts/main.dot.html');
   },
 
-  projectfiles: function () {
-    this.template('_package.json', 'package.json');
+  packages: function() {
     this.template('_bower.json', 'bower.json');
+    this.template('_package.json', 'package.json');
+  },
+
+  grunt: function() {
     this.template('Gruntfile.js', 'Gruntfile.js');
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
-    this.copy('gitignore', '.gitignore');
+  },
+
+  project: function() {
     this.copy('bowerrc', '.bowerrc');
+    this.copy('editorconfig', '.editorconfig');
+    this.copy('gitignore', '.gitignore');
+    this.copy('jshintrc', '.jshintrc');
   }
 });
 
