@@ -2,4 +2,44 @@
   "template": "main"
 }
 
-<p>Welcome home!</p>
+<section class="proto-home-masthead">
+  <div class="container">
+
+    <p>
+      In a dui in erat sagittis dapibus. In ipsum ipsum, eleifend a lorem eget, tempor mattis dolor.
+    </p>
+
+    <a href="#" class="btn btn-lg">
+      Quam Interdum
+    </a>
+
+  </div>
+</section>
+
+<section class="proto-home-content">
+  <div class="container">
+    <header>
+      <h1>Nam mollis bibendum laoreet.</h1>
+    </header>
+
+    <p class="proto-home-content-lead">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+
+    <div class="row">
+      {{= it.include('home-content-item', { 
+        icon: 'glyphicon-globe',
+        title: 'Scelerisque',
+        text: 'Vivamus condimentum magna est, vel placerat ipsum luctus non.'
+      }) }}
+      {{= it.include('home-content-item', {
+        icon: 'glyphicon-random',
+        title: 'Consectetur',
+        text: 'Pellentesque imperdiet accumsan erat, nec egestas turpis gravida at.'
+      }) }}
+      {{= it.include('home-content-item', {
+        icon: 'glyphicon-eye-open',
+        title: 'Tempus Non',
+        text: 'Donec porta, est et iaculis semper, odio libero viverra arcu, ut sollicitudin tortor urna sed metus.'
+      }) }}
+    </div>
+  </div>
+</section>

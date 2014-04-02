@@ -1,1 +1,98 @@
 // add your prototype styles here
+
+@white-color: #fff;
+@yellow-color: #F1C40F;
+@grey-color: #f6f8f8;
+@dark-grey-color: #95A5A6;
+@black-color: #333;
+
+// main layout styles
+
+.proto-nav {
+  margin: 0;
+  font-weight: 500;
+  border: none;
+
+  a {
+    color: @yellow-color;
+  }
+
+  li a:hover {
+    background-color: @grey-color;
+  }
+}
+
+.proto-footer {
+  padding: 20px 0;
+  color: @dark-grey-color;
+  text-align: center;
+}
+
+// home styles
+
+.proto-home-masthead {
+  padding: 80px 0;
+  text-align: center;
+  background-color: @yellow-color;
+  color: @white-color;
+
+  p {
+    max-width: 80%;
+    margin: 0 auto 40px;
+    font-size: 30px;
+    font-weight: 200;
+  }
+
+  .btn {
+    margin: 0;
+    padding: 15px 30px;
+    border-radius: 6px;
+    font-size: 20px;
+    border: 1px solid @white-color;
+    color: @white-color;
+
+    &:hover {
+      background-color: @white-color;
+      color: @yellow-color;
+    }
+  }
+}
+
+.proto-home-content {
+  padding: 80px 0;
+  text-align: center;
+
+  header {
+    margin: 0;
+
+    h1 {
+      font-size: 40px;
+      font-weight: 400;
+    }
+  }
+
+  .proto-home-content-lead {
+    max-width: 80%;
+    margin: 0 auto 75px;
+    font-size: 21px;
+    font-weight: 200;
+  }
+
+  .proto-home-content-item {
+    .glyphicon {
+      font-size: 100px;
+      color: @yellow-color;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 400;
+      marghin-bottom: 5px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+}

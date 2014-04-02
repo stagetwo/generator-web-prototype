@@ -16,14 +16,19 @@ module.exports = function(grunt) {
     watch: {
       stencil: {
         files: [
-          '<%%= config.app %>/pages/{,*/}*.dot.html',
-          '<%%= config.app %>/layouts/{,*/}*.dot.html',
-          '<%%= config.app %>/partials/{,*/}*.dot.html'
+          '<%%= config.app %>/meta/index.dot.html',
+          '<%%= config.app %>/meta/partials/{,*/}*.dot.html',
+          '<%%= config.app %>/prototypes/pages/{,*/}*.dot.html',
+          '<%%= config.app %>/prototypes/layouts/{,*/}*.dot.html',
+          '<%%= config.app %>/prototypes/partials/{,*/}*.dot.html'
         ],
         tasks: ['stencil']
       },
       less: {
-        files: ['<%%= config.app %>/assets/less/{,*/}*.less'],
+        files: [
+          '<%%= config.app %>/meta/assets/less/{,*/}*.less',
+          '<%%= config.app %>/prototypes/assets/less/{,*/}*.less'
+        ],
         tasks: ['less']
       },
       bower: {
@@ -39,10 +44,11 @@ module.exports = function(grunt) {
         },
         files: [
           '<%%= config.app %>/index.html',
-          '<%%= config.app %>/prototypes/*.html',
-          '<%%= config.app %>/assets/css/*.css',
-          '<%%= config.app %>/assets/images/*',
-          '<%%= config.app %>/assets/js/*.js'
+          '<%%= config.app %>/meta/assets/css/*.css',
+          '<%%= config.app %>/prototypes/src/*.html',
+          '<%%= config.app %>/prototypes/assets/css/*.css',
+          '<%%= config.app %>/prototypes/assets/images/*',
+          '<%%= config.app %>/prototypes/assets/js/*.js'
         ]
       }
     },
@@ -72,26 +78,44 @@ module.exports = function(grunt) {
     less: {
       dist: {
         files: {
-          '<%%= config.app %>/assets/css/app.css': ['<%%= config.app %>/assets/less/app.less'],
-          '<%%= config.app %>/assets/css/prototypes.css': ['<%%= config.app %>/assets/less/prototypes.less']
+          '<%%= config.app %>/meta/assets/css/meta.css': ['<%%= config.app %>/meta/assets/less/meta.less'],
+          '<%%= config.app %>/prototypes/assets/css/prototypes.css': ['<%%= config.app %>/prototypes/assets/less/prototypes.less']
         }
       }
     },
     stencil: {
-      main: {
+      meta: {
         options: {
-          partials: '<%%= config.app %>/templates/partials',
-          templates: '<%%= config.app %>/templates/layouts',
-          dot_template_settings: { 
+          partials: '<%%= config.app %>/meta/partials',
+          // templates: '<%%= config.app %>/prototypes/layouts',
+          dot_template_settings: {
             strip: false,
           },
         },
         files: [
           {
             expand: true,
-            cwd: "<%%= config.app %>/templates/pages",
+            cwd: "<%%= config.app %>/meta",
+            src: "index.dot.html",
+            dest: "<%%= config.app %>",
+            ext: ".html"
+          }
+        ]
+      },
+      prototypes: {
+        options: {
+          partials: '<%%= config.app %>/prototypes/partials',
+          templates: '<%%= config.app %>/prototypes/layouts',
+          dot_template_settings: {
+            strip: false,
+          },
+        },
+        files: [
+          {
+            expand: true,
+            cwd: "<%%= config.app %>/prototypes/pages",
             src: "**/*.dot.html",
-            dest: "<%%= config.app %>/prototypes",
+            dest: "<%%= config.app %>/prototypes/src",
             ext: ".html"
           }
         ]

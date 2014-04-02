@@ -38,29 +38,45 @@ var WebPrototypeGenerator = yeoman.generators.Base.extend({
   },
 
   app: function() {
-    // create directories
+    // directories
     this.mkdir('app');
+  },
 
-    this.mkdir('app/assets');
-    this.mkdir('app/assets/less');
-    this.mkdir('app/assets/css');
-    this.mkdir('app/assets/images');
-    this.mkdir('app/assets/js');
+  meta: function() {
+    // directories
+    this.mkdir('app/meta');
+    this.mkdir('app/meta/partials');
+    this.mkdir('app/meta/assets');
+    this.mkdir('app/meta/assets/css');
 
-    this.mkdir('app/templates');
-    this.mkdir('app/templates/layouts');
-    this.mkdir('app/templates/partials');
-    this.mkdir('app/templates/pages');
+    // less
+    this.mkdir('app/meta/assets/less');
+    this.copy('meta.less', 'app/meta/assets/less/meta.less');
+
+    // template
+    this.template('index.dot.html', 'app/meta/index.dot.html');
+  },
+
+  prototypes: function() {
+    // directories
     this.mkdir('app/prototypes');
+    this.mkdir('app/prototypes/layouts');
+    this.mkdir('app/prototypes/partials');
+    this.mkdir('app/prototypes/pages');
+    this.mkdir('app/prototypes/src');
+    this.mkdir('app/prototypes/assets');
+    this.mkdir('app/prototypes/assets/css');
+    this.mkdir('app/prototypes/assets/images');
+    this.mkdir('app/prototypes/assets/js');
 
-    // copy files
-    this.copy('app.less', 'app/assets/less/app.less');
-    this.copy('prototypes.less', 'app/assets/less/prototypes.less');
+    // less
+    this.mkdir('app/prototypes/assets/less');
+    this.copy('prototypes.less', 'app/prototypes/assets/less/prototypes.less');
 
-    this.template('index.html', 'app/index.html');
-    this.template('main.dot.html', 'app/templates/layouts/main.dot.html');
-    this.template('breadcrumb.dot.html', 'app/templates/partials/breadcrumb.dot.html');
-    this.template('home.dot.html', 'app/templates/pages/home.dot.html');
+    // example
+    this.template('main.dot.html', 'app/prototypes/layouts/main.dot.html');
+    this.template('home-content-item.dot.html', 'app/prototypes/partials/home-content-item.dot.html');
+    this.template('home.dot.html', 'app/prototypes/pages/home.dot.html');
   },
 
   packages: function() {
