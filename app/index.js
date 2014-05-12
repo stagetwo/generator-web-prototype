@@ -53,8 +53,10 @@ var WebPrototypeGenerator = yeoman.generators.Base.extend({
     this.mkdir('app/meta/assets/less');
     this.copy('meta.less', 'app/meta/assets/less/meta.less');
 
-    // template
-    this.template('index.dot.html', 'app/meta/index.dot.html');
+    // templates
+    this.copy('index.tmpl', 'app/meta/index.tmpl');
+    this.copy('prototype-item.tmpl', 'app/meta/partials/prototype-item.tmpl');
+    this.copy('prototype.tmpl', 'app/meta/partials/prototype.tmpl');
   },
 
   prototypes: function() {

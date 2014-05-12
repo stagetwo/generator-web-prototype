@@ -1,13 +1,13 @@
 {
   "name": "generator-web-prototype",
   "version": "0.0.1",
-  "description": "Yeoman generator",
+  "description": "Yeoman generator for simplifying the creation of HTML prototypes.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "alexcason/generator-web-prototype",
+  "repository": "stagetwo/generator-web-prototype",
   "author": {
     "name": "Alex Cason",
-    "email": "",
+    "email": "alex@cason.co.uk",
     "url": "https://github.com/alexcason"
   },
   "engines": {
