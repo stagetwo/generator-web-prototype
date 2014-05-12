@@ -18,8 +18,6 @@ module.exports = function(grunt) {
     watch: {
       stencil: {
         files: [
-          // '<%%= config.app %>/meta/index.dot.html',
-          // '<%%= config.app %>/meta/partials/{,*/}*.dot.html',
           '<%%= config.app %>/prototypes/pages/{,*/}*.dot.html',
           '<%%= config.app %>/prototypes/layouts/{,*/}*.dot.html',
           '<%%= config.app %>/prototypes/partials/{,*/}*.dot.html'
@@ -86,24 +84,6 @@ module.exports = function(grunt) {
       }
     },
     stencil: {
-      // meta: {
-      //   options: {
-      //     partials: '<%%= config.app %>/meta/partials',
-      //     // templates: '<%%= config.app %>/prototypes/layouts',
-      //     dot_template_settings: {
-      //       strip: false,
-      //     },
-      //   },
-      //   files: [
-      //     {
-      //       expand: true,
-      //       cwd: '<%%= config.app %>/meta',
-      //       src: 'index.dot.html',
-      //       dest: '<%%= config.app %>',
-      //       ext: '.html'
-      //     }
-      //   ]
-      // },
       prototypes: {
         options: {
           partials: '<%%= config.app %>/prototypes/partials',
