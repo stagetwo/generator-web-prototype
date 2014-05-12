@@ -33,6 +33,13 @@ $ cd my-prototype
 $ yo web-prototype
 ```
 
+Build, watch and recompile the prototypes:
+
+```
+grunt serve
+```
+
+
 The generator creates the applications structure for you. The `meta` folder contains the files required by the generator. The `prototype` folder contains your files.
 
 Within the `prototypes` folder `pages` contains your prototype pages for you to edit. `Layouts` contains the layout templates (menu, header, footer, etc.) which you can use for your pages. `Partials` contains reusable snippets of HTML which you can include in your pages. `Assets` contains your JavaScript, LESS and CSS. You only need to edit the LESS as the CSS will be regenerated each time you make a change. `Src` contains the compiled prototype pages, don't edit these as they are regenerated each time you make a change in the other files.
