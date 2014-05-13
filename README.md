@@ -86,6 +86,26 @@ $ grunt prototype --name new-prototype-page
 
 I like to open another tab in terminal and navigate to the same directory so that you can run commands without stoping Grunt.
 
+### FAQ
+
+#### How do I change the order inwhich the prototype pages are displayed?
+
+The prototype pages are ordered by filename. Therefore, you can order them by prepending the names with a number:
+
+```
+01-home.dot.html
+02-about.dot.html
+03-profile.dot.html
+```
+
+#### How do I delete prototype pages?
+
+There is no command to delete pages yet. However, if you delete the relrevant files from the `pages` and `src` folders and restart grunt then the pages will be removed.
+
+#### Why aren't new files being picked up?
+
+Only files which existed when `grunt serve` was called will be watched. Re-run `grunt serve` to ensure new files are picked up.
+
 ### More Information
 
 If you'd like to know more about Yeoman, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
