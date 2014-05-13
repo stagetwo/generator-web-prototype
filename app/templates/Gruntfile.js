@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // load npm tasks
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-stencil');
 
   var config = {
@@ -23,6 +24,12 @@ module.exports = function(grunt) {
           '<%%= config.app %>/prototypes/partials/{,*/}*.dot.html'
         ],
         tasks: ['stencil', 'sync']
+      },
+      js: {
+        files: [
+          '<%%= config.app %>/prototypes/assets/js/{,*/}*.js'
+        ],
+        tasks: ['jshint']
       },
       less: {
         files: [
@@ -83,6 +90,14 @@ module.exports = function(grunt) {
         }
       }
     },
+    jshint: {
+      files: [
+        '<%%= config.app %>/prototypes/assets/js/{,*/}*.js'
+      ],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
     stencil: {
       prototypes: {
         options: {
@@ -114,6 +129,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'less',
+    'jshint',
     'stencil',
     'sync'
   ]);
@@ -133,11 +149,15 @@ module.exports = function(grunt) {
 
     // generate html for prototype items
     grunt.file.recurse(config.app + '/prototypes/src', function(abspath, rootdir, subdir, filename) {
-      var prototypeItemHTML = grunt.template.process(prototypeItemTemplate, { data: { filename: filename, path: '/prototypes/src/' + filename } });
+      var validExtensions = /(.html)$/i;
 
-      data.prototypesHTML += prototypeItemHTML;
+      if (validExtensions.test(filename)) {
+        var prototypeItemHTML = grunt.template.process(prototypeItemTemplate, { data: { filename: filename, path: '/prototypes/src/' + filename } });
 
-      grunt.log.writeln('Processed file: ' + filename);
+        data.prototypesHTML += prototypeItemHTML;
+
+        grunt.log.writeln('Processed file: ' + filename);
+      }
     });
 
     // generate index html
@@ -154,7 +174,10 @@ module.exports = function(grunt) {
     // ensure required arguments exist and are valid
     var prototypeName = grunt.option('name');
 
-    // TODO: check if prototype with same name already exists
+    // check if name is valid
+    if (!prototypeName) {
+      grunt.fail.fatal("Prototype name was not valid", 3);
+    }
 
     // read in new prototype page template
     var prototypeTemplate = grunt.file.read(config.app + '/meta/partials/prototype.tmpl');

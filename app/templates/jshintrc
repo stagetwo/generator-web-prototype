@@ -17,5 +17,15 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "white": true
+  "white": true,
+  "globals": {
+    "$":false,
+    "jquery":false,
+    "console":false,
+    "require":false,
+    "process":false,
+    "__dirname":false,
+    "exports":false,
+    "angular":false
+  }
 }

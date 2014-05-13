@@ -1,6 +1,6 @@
 {
   "name": "generator-web-prototype",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Yeoman generator for simplifying the creation of HTML prototypes.",
   "license": "MIT",
   "main": "app/index.js",

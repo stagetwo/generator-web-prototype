@@ -75,6 +75,10 @@ var WebPrototypeGenerator = yeoman.generators.Base.extend({
     this.mkdir('app/prototypes/assets/less');
     this.copy('prototypes.less', 'app/prototypes/assets/less/prototypes.less');
 
+    // js
+    this.mkdir('app/prototypes/assets/js');
+    this.copy('prototypes.js', 'app/prototypes/assets/js/prototypes.js');
+
     // example
     this.template('main.dot.html', 'app/prototypes/layouts/main.dot.html');
     this.template('home-content-item.dot.html', 'app/prototypes/partials/home-content-item.dot.html');
