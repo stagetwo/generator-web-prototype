@@ -88,7 +88,7 @@ I like to open another tab in terminal and navigate to the same directory so tha
 
 ### FAQ
 
-#### How do I change the order inwhich the prototype pages are displayed?
+#### How do I change the order in which the prototype pages are displayed?
 
 The prototype pages are ordered by filename. Therefore, you can order them by prepending the names with a number:
 
