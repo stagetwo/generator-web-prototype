@@ -76,7 +76,7 @@ Add a code block anywhere in your partial to use a provided value:
 
 ### Commands
 
-After running the generator you will have one exmaple prototype page. You'll want to add some more. Once you've created the new prototype page you can change the HTML to anything you like.
+After running the generator you will have one example prototype page. You'll want to add some more. Once you've created the new prototype page you can change the HTML to anything you like.
 
 Create a new prototype page:
 
